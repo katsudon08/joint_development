@@ -9,9 +9,15 @@
 void keyboard_input(int, int, int *);
 void display_transition(int);
 
+// 他ファイルで使用している関数のプロトタイプ宣言
+#include "joint.h"
+
 int main(void) {
     // 現在の選択画面を判別するための識別コード
     int currentStateNum = 4;
+
+    // 文字コードをutf8に変更するシェルコマンド
+    system("chcp 65001");
 
     // コマンドプロンプトのコマンド等の履歴をすべて消去するシェルコマンド
     system("cls");
@@ -56,10 +62,29 @@ void keyboard_input(int getNumOnce, int getNumTwice, int *currentStateNum) {
                     break;
             }
             break;
+        // Enterキーが押された時
+        case 0xd:
+            system("cls");
+            switch(*currentStateNum) {
+                case 1:
+                    // 国名ソート
+                    break;
+                case 2:
+                    // メダルソート
+                    break;
+                case 3:
+                    // 検索
+                    search();
+                    break;
+                case 4:
+                    // 入力
+                    break;
+            }
+            break;
         // Escキーが押された時
         case 0x1b:
             system("cls");
-            // コマンドプロンプロを強制終了する
+            // コマンドプロンプトを強制終了する
             exit(0);
             break;
     }
