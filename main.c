@@ -1,29 +1,29 @@
 #include <stdio.h>
-// _getch()é–¢æ•°ã‚’ä½¿ç”¨ã™ã‚‹ãŸã‚ã®å¤–éƒ¨ãƒ©ã‚¤ãƒ–ãƒ©ãƒª
+// _getch()ŠÖ”‚ðŽg—p‚·‚é‚½‚ß‚ÌŠO•”ƒ‰ƒCƒuƒ‰ƒŠ
 #include <conio.h>
-// system()é–¢æ•°ã‚’ä½¿ç”¨ã™ã‚‹ãŸã‚ã®æ¨™æº–ãƒ©ã‚¤ãƒ–ãƒ©ãƒª
+// system()ŠÖ”‚ðŽg—p‚·‚é‚½‚ß‚Ì•W€ƒ‰ƒCƒuƒ‰ƒŠ
 #include <windows.h>
-// exit()é–¢æ•°ã‚’ä½¿ç”¨ã™ã‚‹ãŸã‚ã®å¤–éƒ¨ãƒ©ã‚¤ãƒ–ãƒ©ãƒª
+// exit()ŠÖ”‚ðŽg—p‚·‚é‚½‚ß‚ÌŠO•”ƒ‰ƒCƒuƒ‰ƒŠ
 #include <stdlib.h>
 
 void keyboard_input(int, int, int *);
 void display_transition(int);
 
 int main(void) {
-    // ç¾åœ¨ã®é¸æŠžç”»é¢ã‚’åˆ¤åˆ¥ã™ã‚‹ãŸã‚ã®è­˜åˆ¥ã‚³ãƒ¼ãƒ‰
+    // Œ»Ý‚Ì‘I‘ð‰æ–Ê‚ð”»•Ê‚·‚é‚½‚ß‚ÌŽ¯•ÊƒR[ƒh
     int currentStateNum = 4;
 
-    // ã‚³ãƒžãƒ³ãƒ‰ãƒ—ãƒ­ãƒ³ãƒ—ãƒˆã®ã‚³ãƒžãƒ³ãƒ‰ç­‰ã®å±¥æ­´ã‚’ã™ã¹ã¦æ¶ˆåŽ»ã™ã‚‹ã‚·ã‚§ãƒ«ã‚³ãƒžãƒ³ãƒ‰
+    // ƒRƒ}ƒ“ƒhƒvƒƒ“ƒvƒg‚ÌƒRƒ}ƒ“ƒh“™‚Ì—š—ð‚ð‚·‚×‚ÄÁ‹Ž‚·‚éƒVƒFƒ‹ƒRƒ}ƒ“ƒh
     system("cls");
 
     display_transition(currentStateNum);
 
     while(1) {
-        // å…¥åŠ›ã—ãŸã‚­ãƒ¼ãƒœãƒ¼ãƒ‰ã®æ–‡å­—ã‚’èªè­˜ã™ã‚‹é–¢æ•°ã§16é€²æ•°ã§èªè­˜ã—ã¦ã„ã‚‹ã€‚
+        // “ü—Í‚µ‚½ƒL[ƒ{[ƒh‚Ì•¶Žš‚ð”FŽ¯‚·‚éŠÖ”‚Å16i”‚Å”FŽ¯‚µ‚Ä‚¢‚éB
         int getOnceNum = _getch();
         /*
-        çŸ¢å°ã‚­ãƒ¼ãŒæŠ¼ã•ã‚ŒãŸæ™‚ã«ã€ä¸€å›žç›®ã«çŸ¢å°ã‚­ãƒ¼è‡ªä½“ãŒæŠ¼ã•ã‚ŒãŸã“ã¨ã‚’èªè­˜ã—ãŸã‚ã¨ã«äºŒå›žç›®ã§ã©ã®å‘ãã®çŸ¢å°ã‚­ãƒ¼ãŒæŠ¼ã•ã‚ŒãŸã®ã‹ã‚’
-        è­˜åˆ¥ã™ã‚‹ãŸã‚äºŒã¤ã®å¤‰æ•°ã‚’ç”¨ã„ã¦æ ¼ç´ã—ã¦ã„ã‚‹ã€‚
+        –îˆóƒL[‚ª‰Ÿ‚³‚ê‚½Žž‚ÉAˆê‰ñ–Ú‚É–îˆóƒL[Ž©‘Ì‚ª‰Ÿ‚³‚ê‚½‚±‚Æ‚ð”FŽ¯‚µ‚½‚ ‚Æ‚É“ñ‰ñ–Ú‚Å‚Ç‚ÌŒü‚«‚Ì–îˆóƒL[‚ª‰Ÿ‚³‚ê‚½‚Ì‚©‚ð
+        Ž¯•Ê‚·‚é‚½‚ß“ñ‚Â‚Ì•Ï”‚ð—p‚¢‚ÄŠi”[‚µ‚Ä‚¢‚éB
         */
         int getTwiceNum = _getch();
         keyboard_input(getOnceNum, getTwiceNum, &currentStateNum);
@@ -34,19 +34,19 @@ int main(void) {
 
 void keyboard_input(int getNumOnce, int getNumTwice, int *currentStateNum) {
     switch(getNumOnce) {
-        // çŸ¢å°ã‚­ãƒ¼ãŒæŠ¼ã•ã‚ŒãŸå ´åˆ
+        // –îˆóƒL[‚ª‰Ÿ‚³‚ê‚½ê‡
         case 0xe0:
             switch(getNumTwice) {
-                // â†‘ã‚­ãƒ¼ãŒæŠ¼ã•ã‚ŒãŸæ™‚
+                // ªƒL[‚ª‰Ÿ‚³‚ê‚½Žž
                 case 0x48:
                     system("cls");
                     if(0<*currentStateNum && *currentStateNum<4) {
-                        // ()ã‚’ã¤ã‘ãªã„ã¨*æ¼”ç®—å­ã‚ˆã‚Šã‚‚ã‚¤ãƒ³ã‚¯ãƒªãƒ¡ãƒ³ãƒˆãŒå„ªå…ˆã•ã‚Œã€ã‚¢ãƒ‰ãƒ¬ã‚¹ã‚’ã‚¤ãƒ³ã‚¯ãƒªãƒ¡ãƒ³ãƒˆã™ã‚‹ã“ã¨ã«ãªã£ã¦ã—ã¾ã†ãŸã‚ã€()ã‚’ä»˜ã‘ã‚‹ã€‚
+                        // ()‚ð‚Â‚¯‚È‚¢‚Æ*‰‰ŽZŽq‚æ‚è‚àƒCƒ“ƒNƒŠƒƒ“ƒg‚ª—Dæ‚³‚êAƒAƒhƒŒƒX‚ðƒCƒ“ƒNƒŠƒƒ“ƒg‚·‚é‚±‚Æ‚É‚È‚Á‚Ä‚µ‚Ü‚¤‚½‚ßA()‚ð•t‚¯‚éB
                         (*currentStateNum)++;
                     }
                     display_transition(*currentStateNum);
                     break;
-                // â†“ã‚­ãƒ¼ãŒæŠ¼ã•ã‚ŒãŸæ™‚
+                // «ƒL[‚ª‰Ÿ‚³‚ê‚½Žž
                 case 0x50:
                     system("cls");
                     if(1<*currentStateNum && *currentStateNum<5) {
@@ -56,24 +56,24 @@ void keyboard_input(int getNumOnce, int getNumTwice, int *currentStateNum) {
                     break;
             }
             break;
-        // Escã‚­ãƒ¼ãŒæŠ¼ã•ã‚ŒãŸæ™‚
+        // EscƒL[‚ª‰Ÿ‚³‚ê‚½Žž
         case 0x1b:
             system("cls");
-            // ã‚³ãƒžãƒ³ãƒ‰ãƒ—ãƒ­ãƒ³ãƒ—ãƒ­ã‚’å¼·åˆ¶çµ‚äº†ã™ã‚‹
+            // ƒRƒ}ƒ“ƒhƒvƒƒ“ƒvƒ‚ð‹­§I—¹‚·‚é
             exit(0);
             break;
     }
 }
 
 void display_transition(int currentStateNum) {
-    char *selectInput = "â–º å…¥åŠ›\n";
-    char *input = "  å…¥åŠ›\n";
-    char *selectQuery = "â–º æ¤œç´¢\n";
-    char *query = "  æ¤œç´¢\n";
-    char *selectMedalList = "â–º ãƒ¡ãƒ€ãƒ«ç·ç²å¾—é †ä¸€è¦§\n";
-    char *medalList = "  ãƒ¡ãƒ€ãƒ«ç·ç²å¾—é †ä¸€è¦§\n";
-    char *selectCountryList = "â–º å›½åé †ä¸€è¦§\n";
-    char *countryList = "  å›½åé †ä¸€è¦§\n";
+    char *selectInput = "? “ü—Í\n";
+    char *input = "  “ü—Í\n";
+    char *selectQuery = "? ŒŸõ\n";
+    char *query = "  ŒŸõ\n";
+    char *selectMedalList = "? ƒƒ_ƒ‹‘Šl“¾‡ˆê——\n";
+    char *medalList = "  ƒƒ_ƒ‹‘Šl“¾‡ˆê——\n";
+    char *selectCountryList = "? ‘–¼‡ˆê——\n";
+    char *countryList = "  ‘–¼‡ˆê——\n";
 
     char *selectInputState[4] = {selectInput, query, medalList, countryList};
     char *selectQueryState[4] = {input, selectQuery, medalList, countryList};
