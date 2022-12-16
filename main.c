@@ -105,6 +105,28 @@ void display_transition(int currentStateNum) {
     char *selectMedalState[4] = {input, query, selectMedalList, countryList};
     char *selectCountryState[4] = {input, query, medalList, selectCountryList};
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     switch(currentStateNum) {
         case 1:
             for(int i=0; i<4; i++) {
