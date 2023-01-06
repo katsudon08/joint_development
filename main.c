@@ -91,62 +91,33 @@ void keyboard_input(int getNumOnce, int getNumTwice, int *currentStateNum) {
 }
 
 void display_transition(int currentStateNum) {
-    char *selectInput = "► 入力\n";
-    char *input = "  入力\n";
-    char *selectQuery = "► 検索\n";
-    char *query = "  検索\n";
-    char *selectMedalList = "► メダル総獲得順一覧\n";
-    char *medalList = "  メダル総獲得順一覧\n";
-    char *selectCountryList = "► 国名順一覧\n";
-    char *countryList = "  国名順一覧\n";
-
-    char *selectInputState[4] = {selectInput, query, medalList, countryList};
-    char *selectQueryState[4] = {input, selectQuery, medalList, countryList};
-    char *selectMedalState[4] = {input, query, selectMedalList, countryList};
-    char *selectCountryState[4] = {input, query, medalList, selectCountryList};
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    char *normalState[4] = {"  入力\n", "  検索\n", "  メダル総獲得順一覧\n", "  国名順一覧\n"};
+    char *selectState[4];
 
     switch(currentStateNum) {
         case 1:
-            for(int i=0; i<4; i++) {
-                printf("%s", selectCountryState[i]);
+            for(int i = 0; i < 4; i++) {
+                selectState[i] = normalState[i];
             }
+            selectState[4] = "➤%s", normalState[4];
             break;
         case 2:
-            for(int i=0; i<4; i++) {
-                printf("%s", selectMedalState[i]);
+            for(int i = 0; i < 4; i++) {
+                selectState[i] = normalState[i];
             }
+            selectState[3] = "➤%s", normalState[3];
             break;
         case 3:
-            for(int i=0; i<4; i++) {
-                printf("%s", selectQueryState[i]);
+            for(int i = 0; i < 4; i++) {
+                selectState[i] = normalState[i];
             }
+            selectState[2] = "➤%s", normalState[2];
             break;
         case 4:
-            for(int i=0; i<4; i++) {
-                printf("%s", selectInputState[i]);
+            for(int i = 0; i < 4; i++) {
+                selectState[i] = normalState[i];
             }
+            selectState[1] = "➤%s", normalState[1];
             break;
     }
 }
