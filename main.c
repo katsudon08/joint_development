@@ -68,18 +68,18 @@ void keyboard_input(int getNumOnce, int getNumTwice, int *currentStateNum) {
             system("cls");
             switch(*currentStateNum) {
                 case 1:
-                    // 国名ソート
+                    // 入力
+                    input();
                     break;
                 case 2:
-                    // メダルソート
-                    break;
-                case 3:
                     // 検索
                     search();
                     break;
+                case 3:
+                    // メダルソート
+                    break;
                 case 4:
-                    // 入力
-                    input();
+                    // 国名ソート
                     break;
             }
             break;

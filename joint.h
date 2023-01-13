@@ -1,5 +1,5 @@
 // 入力機能の関数
-
+int input();
 
 // 検索機能の関数
 int search();
