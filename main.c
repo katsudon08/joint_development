@@ -79,6 +79,7 @@ void keyboard_input(int getNumOnce, int getNumTwice, int *currentStateNum) {
                     break;
                 case 4:
                     // 入力
+                    input();
                     break;
             }
             break;
