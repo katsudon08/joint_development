@@ -11,7 +11,7 @@ void keyboard_input(int, int, int *);
 void display_transition(int);
 
 // 他ファイルで使用している関数のプロトタイプ宣言
-#include "joint.h"
+#include "PROGRAM_JOINT.h"
 
 int main(void) {
     // 現在の選択画面を判別するための識別コード
@@ -67,19 +67,20 @@ void keyboard_input(int getNumOnce, int getNumTwice, int *currentStateNum) {
         case 0xd:
             system("cls");
             switch(*currentStateNum) {
-                case 1:
+                case 0:
                     // 入力
                     input();
                     break;
-                case 2:
+                case 1:
                     // 検索
                     search();
                     break;
-                case 3:
+                case 2:
                     // メダルソート
                     break;
-                case 4:
+                case 3:
                     // 国名ソート
+                    // selectionSort(char, int, int);
                     break;
             }
             break;
