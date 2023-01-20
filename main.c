@@ -9,11 +9,18 @@
 void keyboard_input(int, int, int *);
 void display_transition(int);
 
+// ä»–ãƒ•ã‚¡ã‚¤ãƒ«ã§ä½¿ç”¨ã—ã¦ã?ã‚‹é–¢æ•°ã®ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—å®£è¨€
+#include "joint.h"
+
 int main(void) {
     // Œ»İ‚Ì‘I‘ğ‰æ–Ê‚ğ”»•Ê‚·‚é‚½‚ß‚Ì¯•ÊƒR[ƒh
     int currentStateNum = 4;
 
     // ƒRƒ}ƒ“ƒhƒvƒƒ“ƒvƒg‚ÌƒRƒ}ƒ“ƒh“™‚Ì—š—ğ‚ğ‚·‚×‚ÄÁ‹‚·‚éƒVƒFƒ‹ƒRƒ}ƒ“ƒh
+    // æ–?å­—ã‚³ãƒ¼ãƒ‰ã‚’utf8ã«å¤‰æ›´ã™ã‚‹ã‚·ã‚§ãƒ«ã‚³ãƒãƒ³ãƒ?
+    system("chcp 65001");
+
+    // ã‚³ãƒãƒ³ãƒ‰ã?—ãƒ­ãƒ³ãƒ—ãƒˆã®ã‚³ãƒãƒ³ãƒ‰ç­‰ã?®å±¥æ­´ã‚’ã™ã¹ã¦æ¶ˆå»ã™ã‚‹ã‚·ã‚§ãƒ«ã‚³ãƒãƒ³ãƒ?
     system("cls");
 
     display_transition(currentStateNum);
@@ -53,6 +60,25 @@ void keyboard_input(int getNumOnce, int getNumTwice, int *currentStateNum) {
                         (*currentStateNum)--;
                     }
                     display_transition(*currentStateNum);
+                    break;
+            }
+            break;
+        // EnterƒL[‚ª‰Ÿ‚³‚ê‚½
+        case 0xd:
+            system("cls");
+            switch(*currentStateNum) {
+                case 1:
+                    // ‘–¼ƒ\[ƒg
+                    break;
+                case 2:
+                    // ƒƒ_ƒ‹ƒ\[ƒg
+                    break;
+                case 3:
+                    // ŒŸõ
+                    search();
+                    break;
+                case 4:
+                    // “ü—Í
                     break;
             }
             break;
