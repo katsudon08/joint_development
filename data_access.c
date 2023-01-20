@@ -13,14 +13,14 @@ typedef struct {
 
 struct COUNTRY_DATA {
     int medalRank;
-    char *countryName;
+    char countryName[BUF_SIZE];
     int goldMedal;
     int silverMedal;
     int bronzeMedal;
     int totalMedal;
 };
 
-void fileWrite(int medalRank, char *countryName, int goldMedal, int silverMedal, int copperMedal) {
+void fileWrite(char *countryName, int goldMedal, int silverMedal, int copperMedal) {
     FILE *fp;
 
     char *fname = "data.csv";
@@ -33,20 +33,19 @@ void fileWrite(int medalRank, char *countryName, int goldMedal, int silverMedal,
     }
     char inputString[BUF_SIZE];
 
-    sprintf(inputString, "%d,%s,%d,%d,%d\n", medalRank, countryName, goldMedal, silverMedal, copperMedal);
+    sprintf(inputString, "%s,%d,%d,%d\n", countryName, goldMedal, silverMedal, copperMedal);
     fputs(inputString, fp);
 
     fclose(fp);
 }
 
-struct COUNTRY_DATA* fileRead() {
+struct COUNTRY_DATA* main() {
     FILE *fp;
     char *fileName = "data.csv";
     static struct COUNTRY_DATA data[BUF_SIZE];
     static struct COUNTRY_DATA *data_p = data;
     char tmpString[BUF_SIZE];
-    int medalRank;
-    char countryName;
+    char countryName[BUF_SIZE];
     int goldMedal;
     int silverMedal;
     int bronzeMedal;
@@ -56,9 +55,9 @@ struct COUNTRY_DATA* fileRead() {
         printf("Error: 読み込むファイルが見つかりませんでした。");
         exit(1);
     }else {
-        for(int i=0; i<fgets(tmpString, BUF_SIZE, fp)!=NULL; i++) {
-            sscanf(tmpString, "%d,%[^,],%d,%d,%d", medalRank, countryName, goldMedal, silverMedal, bronzeMedal);
-            data[i] = init_data(medalRank, countryName, goldMedal, silverMedal, bronzeMedal);
+        for(int i=0; fgets(tmpString, BUF_SIZE, fp)!=NULL; i++) {
+            sscanf(tmpString, "%[^,],%d,%d,%d", countryName, &goldMedal, &silverMedal, &bronzeMedal);
+            data[i] = init_data(i+1, countryName, goldMedal, silverMedal, bronzeMedal);
         }
     }
     fclose(fp);
