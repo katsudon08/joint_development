@@ -39,6 +39,25 @@ void fileWrite(char *countryName, int goldMedal, int silverMedal, int copperMeda
     fclose(fp);
 }
 
+void fileRewrite(char *countryName, int goldMedal, int silverMedal, int copperMedal) {
+    FILE *fp;
+
+    char *fname = "data.csv";
+
+    fp = fopen("data.csv", "w");
+
+    if(fp == NULL) {
+        printf("Error: 書き込むファイルが見つかりませんでした。");
+        exit(0);
+    }
+    char inputString[BUF_SIZE];
+
+    sprintf(inputString, "%s,%d,%d,%d\n", countryName, goldMedal, silverMedal, copperMedal);
+    fputs(inputString, fp);
+
+    fclose(fp);
+}
+
 struct COUNTRY_DATA* fileRead() {
     FILE *fp;
     char *fileName = "data.csv";
