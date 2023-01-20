@@ -1,9 +1,9 @@
 #include <stdio.h>
-// _getch()関数を使用するための外部ライブラリ
+// _getch()�֐���g�p���邽�߂̊O�����C�u����
 #include <conio.h>
-// system()関数を使用するための標準ライブラリ
+// system()�֐���g�p���邽�߂̕W�����C�u����
 #include <windows.h>
-// exit()関数を使用するための外部ライブラリ
+// exit()�֐���g�p���邽�߂̊O�����C�u����
 #include <stdlib.h>
 #include <string.h>
 
@@ -17,20 +17,21 @@ int main(void) {
     // 現在の選択画面を判別するための識別コード
     int currentStateNum = 0;
 
-    // 文字コードをutf8に変更するシェルコマンド
+    // �R�}���h�v�����v�g�̃R�}���h���̗����ׂď������V�F���R�}���h
+    // �?字コードをutf8に変更するシェルコマン�?
     system("chcp 65001");
 
-    // コマンドプロンプトのコマンド等の履歴をすべて消去するシェルコマンド
+    // コマンド�?�ロンプトのコマンド等�?�履歴をすべて消去するシェルコマン�?
     system("cls");
 
     display_transition(currentStateNum);
 
     while(1) {
-        // 入力したキーボードの文字を認識する関数で16進数で認識している。
+        // ��͂����L�[�{�[�h�̕�����F������֐���16�i���ŔF�����Ă���B
         int getOnceNum = _getch();
         /*
-        矢印キーが押された時に、一回目に矢印キー自体が押されたことを認識したあとに二回目でどの向きの矢印キーが押されたのかを
-        識別するため二つの変数を用いて格納している。
+        ���L�[�������ꂽ���ɁA���ڂɖ��L�[���̂������ꂽ���Ƃ�F���������Ƃɓ��ڂłǂ̌�̖��L�[�������ꂽ�̂���
+        ���ʂ��邽�ߓ�̕ϐ���p���Ċi�[���Ă���B
         */
         int getTwiceNum = _getch();
         keyboard_input(getOnceNum, getTwiceNum, &currentStateNum);
@@ -41,10 +42,10 @@ int main(void) {
 
 void keyboard_input(int getNumOnce, int getNumTwice, int *currentStateNum) {
     switch(getNumOnce) {
-        // 矢印キーが押された場合
+        // ���L�[�������ꂽ�ꍇ
         case 0xe0:
             switch(getNumTwice) {
-                // ↑キーが押された時
+                // ���L�[�������ꂽ��
                 case 0x48:
                     system("cls");
                     if(0<*currentStateNum && *currentStateNum<4) {
@@ -53,7 +54,7 @@ void keyboard_input(int getNumOnce, int getNumTwice, int *currentStateNum) {
                     }
                     display_transition(*currentStateNum);
                     break;
-                // ↓キーが押された時
+                // ���L�[�������ꂽ��
                 case 0x50:
                     system("cls");
                     if(-1<*currentStateNum && *currentStateNum<3) {
@@ -63,7 +64,7 @@ void keyboard_input(int getNumOnce, int getNumTwice, int *currentStateNum) {
                     break;
             }
             break;
-        // Enterキーが押された時
+        // Enter�L�[�������ꂽ��
         case 0xd:
             system("cls");
             switch(*currentStateNum) {
@@ -76,7 +77,7 @@ void keyboard_input(int getNumOnce, int getNumTwice, int *currentStateNum) {
                     search();
                     break;
                 case 2:
-                    // メダルソート
+                    // ���_���\�[�g
                     break;
                 case 3:
                     // 国名ソート
@@ -84,10 +85,10 @@ void keyboard_input(int getNumOnce, int getNumTwice, int *currentStateNum) {
                     break;
             }
             break;
-        // Escキーが押された時
+        // Esc�L�[�������ꂽ��
         case 0x1b:
             system("cls");
-            // コマンドプロンプトを強制終了する
+            // �R�}���h�v�����v������I������
             exit(0);
             break;
     }
