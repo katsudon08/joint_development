@@ -32,7 +32,7 @@ void input(){
 
     for (int i = 0; i < insertCountryNum; i++) {
         // この段階で順位は不明なのでありえない値を引数に格納
-        fileWrite(-1, countryName[i], goldMedalNum[i], silverMedalNum[i], copperMedalNum[i]);
+        fileWrite(countryName[i], goldMedalNum[i], silverMedalNum[i], copperMedalNum[i]);
     }
     printf("ファイルへ書き込みました。\n");
 }

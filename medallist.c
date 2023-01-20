@@ -1,15 +1,16 @@
 #include<stdio.h>
 #include<string.h>
+#include "DAO.h"
 typedef struct {                                        /*新しい型 国名 金銀銅メダル数*/
 		char cntry_name[20];                               /*国名*/
 		int g_num;                                      /*金メダル数*/
 		int s_num;                                      /*銀メダル数*/
 		int b_num;                                      /*銅メダル数*/
-	}mdl;                         
+	}mdl;
 mdl medal_sort[100],chng;                      /*構造体の配列とソートに使う構造体を宣言*/
 
 void TotalMedalRank(void){                               /*総メダルソート*/
-	
+
 	int i,j,t;                                          /*ソートと表示に使う変数を宣言*/
 	int s;                                              /*総メダル数算出の際使う変数*/
 	int full_medal_num[100];                            /*総メダル数*/
@@ -21,8 +22,8 @@ void TotalMedalRank(void){                               /*総メダルソート
 
 	}
 	for(i=0;i <= 98 && strlen(medal_sort[i].cntry_name)/**/;i++){
-		 
-		for(j=i+1;j <= 99 && strlen(medal_sort[j].cntry_name)/**/;j++){ 
+
+		for(j=i+1;j <= 99 && strlen(medal_sort[j].cntry_name)/**/;j++){
 
 			if(full_medal_num[i]<full_medal_num[j]){
 
@@ -44,7 +45,7 @@ void TotalMedalRank(void){                               /*総メダルソート
 		printf("No.%d \t| %s",t+1,medal_sort[t].cntry_name);
 		printf(" \t| Total  %d \t| Gold   %d",full_medal_num[t],medal_sort[t].g_num);
 		printf(" \t| Silver %d \t| Bronze %d \t|\n",medal_sort[t].s_num,medal_sort[t].b_num);
-	
+
 	}                                                   /*No.〇 | 国名 | Total  〇 | Gold   〇 |Silver 〇 | Bronze 〇 |*/
 	printf("...\n");
 }
@@ -54,7 +55,7 @@ void GSCMedalRank(void){                                /*メダル順位ソー�
 	int i,j,t;                                          /*ソートと表示に使う変数を宣言*/
 
 	for(i=0;strlen(medal_sort[i].cntry_name) && i <= 98/**/;i++){
-		for(j = i + 1;strlen(medal_sort[j].cntry_name)/* && j <= 99*/;j++){                   
+		for(j = i + 1;strlen(medal_sort[j].cntry_name)/* && j <= 99*/;j++){
 			                                            /*金メダル数の順にソート*/
 			if(medal_sort[i].g_num<medal_sort[j].g_num){
 
@@ -62,16 +63,16 @@ void GSCMedalRank(void){                                /*メダル順位ソー�
 				medal_sort[i] = medal_sort[j];
 				medal_sort[j] = chng;
 
-			}                                           
+			}
 			else if(medal_sort[i].g_num==medal_sort[j].g_num){
-														/*金メダル数が同じ時銀の比較へ*/					
+														/*金メダル数が同じ時銀の比較へ*/
 				if(medal_sort[i].s_num<medal_sort[j].s_num){
 														/*銀メダル数の順にソート*/
 					chng = medal_sort[i];
 					medal_sort[i] = medal_sort[j];
 					medal_sort[j] = chng;
 
-				}                               
+				}
 				else if(medal_sort[i].s_num==medal_sort[j].s_num){
 														/*銀メダル数が同じ時銅の比較へ*/
 					if(medal_sort[i].b_num<medal_sort[j].b_num){
@@ -80,27 +81,27 @@ void GSCMedalRank(void){                                /*メダル順位ソー�
 						medal_sort[i] = medal_sort[j];
 						medal_sort[j] = chng;
 
-					}		
+					}
 				}
 			}
 		}
-	} 
+	}
 	printf("Medal Ranking\n\n");
 	for(t=0;strlen(medal_sort[t].cntry_name);t++){
 
 		printf("No.%d \t| %s",t+1,medal_sort[t].cntry_name);
 		printf(" \t| Gold   %d ",medal_sort[t].g_num);
 		printf(" \t| Silver %d \t| Bronze %d \t|\n",medal_sort[t].s_num,medal_sort[t].b_num);
-	
-	}  
-	printf("...\n");                                             
+
+	}
+	printf("...\n");
 														/*No.〇 | 国名 | Gold   〇 | Silver 〇 | Bronze 〇 |*/
-} 
-/*                       
+}
+/*
 int main(void){
 	int n;
 	int let_num;
-	
+
 
 	printf("please tell me num of countries\n->");
 	scanf("%d",&let_num);
@@ -119,10 +120,10 @@ int main(void){
 
 	printf("All finished.\n");
 
-	
-	
+
+
 	GSCMedalRank();
-	
+
 	TotalMedalRank();
 	/*
 
