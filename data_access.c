@@ -39,7 +39,7 @@ void fileWrite(char *countryName, int goldMedal, int silverMedal, int copperMeda
     fclose(fp);
 }
 
-struct COUNTRY_DATA* main() {
+struct COUNTRY_DATA* fileRead() {
     FILE *fp;
     char *fileName = "data.csv";
     static struct COUNTRY_DATA data[BUF_SIZE];
