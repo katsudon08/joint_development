@@ -9,7 +9,7 @@
 
 struct COUNTRY_DATA {
     int medalRank;
-    char *countryName;
+    char countryName[BUF_SIZE];
     int goldMedal;
     int silverMedal;
     int bronzeMedal;
@@ -17,30 +17,28 @@ struct COUNTRY_DATA {
 };
 
 void search() {
-    int isExist = 0;
-    struct COUNTRY_DATA *data;
+    int isExist=0;
+    struct COUNTRY_DATA *data = fileRead();
     char searchCountryName[BUF_SIZE];
 
-    printf("検索する国名を入力してください。\n");
+    printf("検索する国名:");
     scanf("%s", searchCountryName);
     system("cls");
 
-    data = fileRead();
-    for(int i=0; i<BUF_SIZE; i++) {
-        if(strcmp(searchCountryName, data->countryName)==0) {
+    for(int i=0; (data+i)->medalRank!=0; i++) {
+        if(strcmp(searchCountryName, (data+i)->countryName)==0) {
                 // コマンドプロントの履歴を消去
                 system("cls");
                 printf("======================================\n");
-                printf("\t国名\t\t:%s\n", data->countryName);
-                printf("\tメダル順位\t:%d\n", data->medalRank);
-                printf("\t獲得メダル数\t:%d\n", data->totalMedal);
+                printf("\t国名\t\t:%s\n", (data+i)->countryName);
+                printf("\tメダル順位\t:%d\n", (data+i)->medalRank);
+                printf("\t獲得メダル数\t:%d\n", (data+i)->totalMedal);
                 printf("======================================\n");
                 isExist++;
+                break;
         }
-        data++;
     }
     if(!isExist) {
-        printf("Error: 検索した条件と一致する国が見つかりませんでした。");
-        fflush(0);
+        printf("検索した条件と一致する国が見つかりませんでした。");
     }
 }

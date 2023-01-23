@@ -15,7 +15,6 @@ struct COUNTRY_DATA {
 struct COUNTRY_DATA chng;
 struct COUNTRY_DATA *medal_sort;
 
-
 void TotalMedalRank(void){                              /*総メダルソート*/
 
 	medal_sort = fileRead();
@@ -25,7 +24,6 @@ void TotalMedalRank(void){                              /*総メダルソート*
 	for(i=0;i < (BUF_SIZE - 1) && strlen(medal_sort[i].countryName);i++){
 		 
 		for(j=i+1;j < BUF_SIZE && strlen(medal_sort[j].countryName);j++){ 
-
 			if(medal_sort[i].totalMedal<medal_sort[j].totalMedal){
 
 				chng = medal_sort[i];
@@ -47,7 +45,6 @@ void TotalMedalRank(void){                              /*総メダルソート*
 		}
 		printf(" \t| Total  %d \t| Gold   %d",(medal_sort+t)->totalMedal,(medal_sort+t)->goldMedal);
 		printf(" \t| Silver %d \t| Bronze %d \t|\n",(medal_sort+t)->silverMedal,(medal_sort+t)->bronzeMedal);
-	
 	}                                                   /*No.〇 | 国名 | Total  〇 | Gold   〇 |Silver 〇 | Bronze 〇 |*/
 	printf("...\n");
 	
@@ -87,11 +84,11 @@ void GSBMedalRank(void){                                /*メダル順位ソー�
 						medal_sort[i] = medal_sort[j];
 						medal_sort[j] = chng;
 
-					}		
+					}
 				}
 			}
 		}
-	} 
+	}
 	printf("Medal Ranking\n\n");
 	
 	for(t=0;t < BUF_SIZE && strlen((medal_sort+t)->countryName);t++){
@@ -121,6 +118,7 @@ struct COUNTRY_DATA *ReTotalMedalRank(void){                               /*総
 		for(j=i+1;j <= BUF_SIZE && strlen(medal_sort[j].countryName);j++){ 
 
 			if(medal_sort[i].totalMedal<medal_sort[j].totalMedal){
+
 
 				chng = medal_sort[i];
 				medal_sort[i] = medal_sort[j];

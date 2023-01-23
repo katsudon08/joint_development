@@ -1,9 +1,6 @@
 #include <stdio.h>
-// _getch()�֐���g�p���邽�߂̊O�����C�u����
 #include <conio.h>
-// system()�֐���g�p���邽�߂̕W�����C�u����
 #include <windows.h>
-// exit()�֐���g�p���邽�߂̊O�����C�u����
 #include <stdlib.h>
 #include <string.h>
 
@@ -13,20 +10,16 @@ void display_transition(int);
 #include "PROGRAM_JOINT.h"
 
 int main(void) {
-    // 現在の選択画面を判別するための識別コード
     int currentStateNum = 0;
 
-    // �R�}���h�v�����v�g�̃R�}���h���̗����ׂď������V�F���R�}���h
-    // �?字コードをutf8に変更するシェルコマン�?
     system("chcp 65001");
 
-    // コマンド�?�ロンプトのコマンド等�?�履歴をすべて消去するシェルコマン�?
     system("cls");
 
     display_transition(currentStateNum);
 
     while(1) {
-         int getOnceNum = _getch();
+        int getOnceNum = _getch();
         int getTwiceNum = _getch();
         keyboard_input(getOnceNum, getTwiceNum, &currentStateNum);
     }
@@ -59,7 +52,6 @@ void keyboard_input(int getNumOnce, int getNumTwice, int *currentStateNum) {
             system("cls");
             switch(*currentStateNum) {
                 case 0:
-                    // 入力
                     input();
                     break;
                 case 1:
@@ -73,10 +65,8 @@ void keyboard_input(int getNumOnce, int getNumTwice, int *currentStateNum) {
                     break;
             }
             break;
-        // Escキーが押された時
         case 0x1b:
             system("cls");
-            // �R�}���h�v�����v������I������
             exit(0);
             break;
     }
@@ -85,7 +75,7 @@ void keyboard_input(int getNumOnce, int getNumTwice, int *currentStateNum) {
 void display_transition(int currentStateNum) {
     char *normalState[4] = {"  入力\n", "  検索\n", "  メダル総獲得順一覧\n", "  国名順一覧\n"};
     char *selectState[4];
-    char allow[50] = "➤";
+    char allow[50] = "→";
     strcat(allow, normalState[currentStateNum]);
 
     for(int i = 0; i < 4; i++) {
