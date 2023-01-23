@@ -60,6 +60,7 @@ void keyboard_input(int getNumOnce, int getNumTwice, int *currentStateNum) {
                 case 2:
                     // メダル順ソート、表示用関数
                     break;
+
                 case 3:
                     selectionSort();
                     break;
