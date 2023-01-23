@@ -27,6 +27,6 @@ void selectionSort() {
         }
     }
     for(int i=0; (data+i)->medalRank!=0; i++) {
-        printf("国名:\t\t%s\t金メダル:\t\t%d\t銀メダル:\t\t%d\t銅メダル:\t\t%d\n", (data+i)->countryName, (data+i)->goldMedal, (data+i)->silverMedal, (data+i)->bronzeMedal);
+        printf("国名:\t%s\t\t\t\t金メダル:\t%d\t\t銀メダル:\t%d\t\t銅メダル:\t%d\n", (data+i)->countryName, (data+i)->goldMedal, (data+i)->silverMedal, (data+i)->bronzeMedal);
     }
 }
