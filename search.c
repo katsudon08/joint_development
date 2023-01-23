@@ -37,8 +37,8 @@ void search() {
                 printf("\tメダル順位\t:%d\n", (data+i)->medalRank);
                 printf("\t獲得メダル数\t:%d\n", (data+i)->totalMedal);
                 printf("======================================\n");
-                break;
                 isExist++;
+                break;
         }
     }
     if(!isExist) {
