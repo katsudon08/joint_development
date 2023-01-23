@@ -33,7 +33,6 @@ void TotalMedalRank(void){                              /*総メダルソート*
 				medal_sort[j] = chng;
 
 			}
-
 		}
 
 	}                                                   /*総メダル数の順にソート*/
