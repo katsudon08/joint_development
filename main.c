@@ -9,7 +9,7 @@
 
 void keyboard_input(int, int, int *);
 void display_transition(int);
-// 他ファイルで使用している関数のプロトタイプ宣言
+
 #include "PROGRAM_JOINT.h"
 
 int main(void) {
@@ -26,12 +26,7 @@ int main(void) {
     display_transition(currentStateNum);
 
     while(1) {
-        // 入力したキーボードの文字を認識する関数で16進数で認識している。
-        int getOnceNum = _getch();
-        /*
-        矢印キーが押された時に、一回目に矢印キー自体が押されたことを認識したあとに二回目でどの向きの矢印キーが押されたのかを
-        識別するため二つの変数を用いて格納している。
-        */
+         int getOnceNum = _getch();
         int getTwiceNum = _getch();
         keyboard_input(getOnceNum, getTwiceNum, &currentStateNum);
     }
@@ -41,10 +36,8 @@ int main(void) {
 
 void keyboard_input(int getNumOnce, int getNumTwice, int *currentStateNum) {
     switch(getNumOnce) {
-        // 矢印キーが押された場合
         case 0xe0:
             switch(getNumTwice) {
-                // ↑キーが押された時
                 case 0x48:
                     system("cls");
                     if(0<*currentStateNum && *currentStateNum<4) {
@@ -53,7 +46,6 @@ void keyboard_input(int getNumOnce, int getNumTwice, int *currentStateNum) {
                     }
                     display_transition(*currentStateNum);
                     break;
-                // ↓キーが押された時
                 case 0x50:
                     system("cls");
                     if(-1<*currentStateNum && *currentStateNum<3) {
@@ -63,8 +55,6 @@ void keyboard_input(int getNumOnce, int getNumTwice, int *currentStateNum) {
                     break;
             }
             break;
-
-        // Enterキーが押された時
         case 0xd:
             system("cls");
             switch(*currentStateNum) {
@@ -73,18 +63,13 @@ void keyboard_input(int getNumOnce, int getNumTwice, int *currentStateNum) {
                     input();
                     break;
                 case 1:
-
-                    // 検索
                     search();
                     break;
                 case 2:
-                    // ���_���\�[�g
-                    TotalMedalRank();
-                    GSCMedalRank();
                     break;
 
-                case 4:
-                    // 国名ソート
+                case 3:
+                    selectionSort();
                     break;
             }
             break;

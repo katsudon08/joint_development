@@ -14,3 +14,4 @@ struct COUNTRY_DATA* ReTotalMedalRank();
 
 
 // 国名ソート一覧の関数
+void selectionSort();
