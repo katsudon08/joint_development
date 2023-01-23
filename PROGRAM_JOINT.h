@@ -8,4 +8,4 @@ void search();
 
 
 // 国名ソート一覧の関数
-// void selectionSort(char, int, int);
+void selectionSort();

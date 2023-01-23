@@ -1,6 +1,6 @@
 CC = gcc
 PGNAME = exe
-OBJS =  data_access.c data_structure.c input.c main.c medallist.c search.c #country_sort.o medallist.o
+OBJS =  data_access.c data_structure.c input.c main.c medallist.c search.c country_sort.o #medallist.o
 
 $(PGNAME):$(OBJS)
 	$(CC) -o $@ $^ -g
