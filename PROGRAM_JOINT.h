@@ -6,7 +6,9 @@ void search();
 
 // メダル獲得量ソート一覧の関数
 void TotalMedalRank();
-void GSCMedalRank();
+void GSBMedalRank();
+
+struct COUNTRY_DATA* ReTotalMedalRank();
+struct COUNTRY_DATA* ReGSBMedalRank();
 
 // 国名ソート一覧の関数
-// void selectionSort(char, int, int);
