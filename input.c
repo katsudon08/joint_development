@@ -35,4 +35,6 @@ void input(){
         fileWrite(countryName[i], goldMedalNum[i], silverMedalNum[i], copperMedalNum[i]);
     }
     printf("ファイルへ書き込みました。\n");
+
+    // メダル順位のソート
 }
