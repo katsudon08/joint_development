@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "DAO.h"
+#include "MEDAL_SORT.h"
 
 void input(){
     char inputAns;
@@ -37,4 +38,5 @@ void input(){
     printf("ファイルへ書き込みました。\n");
 
     // メダル順位のソート
+    ReGSBMedalRank();
 }

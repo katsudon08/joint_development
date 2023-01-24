@@ -4,51 +4,46 @@
 #include <stdlib.h>
 #include <string.h>
 
-void keyboard_input(int, int, int *);
-void display_transition(int);
+void sort_input_key(int, int, int *);
+void sort_display(int);
 void menu();
 
-#include "PROGRAM_JOINT.h"
+#include "MEDAL_SORT.h"
 
-int main(void) {
-    menu();
-    return 0;
-}
-
-void menu() {
+void sort_menu() {
     int currentStateNum = 0;
 
     system("chcp 65001");
 
     system("cls");
 
-    display_transition(currentStateNum);
+    sort_display(currentStateNum);
 
     while(1) {
         int getOnceNum = _getch();
         int getTwiceNum = _getch();
-        keyboard_input(getOnceNum, getTwiceNum, &currentStateNum);
+        sort_input_key(getOnceNum, getTwiceNum, &currentStateNum);
     }
 }
 
-void keyboard_input(int getNumOnce, int getNumTwice, int *currentStateNum) {
+void sort_input_key(int getNumOnce, int getNumTwice, int *currentStateNum) {
     switch(getNumOnce) {
         case 0xe0:
             switch(getNumTwice) {
                 case 0x48:
                     system("cls");
-                    if(0<*currentStateNum && *currentStateNum<4) {
+                    if(*currentStateNum==1) {
                         // ()をつけないと*演算子よりもインクリメントが優先され、アドレスをデクリメントすることになってしまうため、()を付ける。
                         (*currentStateNum)--;
                     }
-                    display_transition(*currentStateNum);
+                    sort_display(*currentStateNum);
                     break;
                 case 0x50:
                     system("cls");
-                    if(-1<*currentStateNum && *currentStateNum<3) {
+                    if(*currentStateNum==0) {
                         (*currentStateNum)++;
                     }
-                    display_transition(*currentStateNum);
+                    sort_display(*currentStateNum);
                     break;
             }
             break;
@@ -56,33 +51,27 @@ void keyboard_input(int getNumOnce, int getNumTwice, int *currentStateNum) {
             system("cls");
             switch(*currentStateNum) {
                 case 0:
-                    input();
+                    TotalMedalRank();
                     break;
                 case 1:
-                    search();
-                    break;
-                case 2:
-                    sort_menu();
-                    break;
-                case 3:
-                    selectionSort();
+                    GSBMedalRank();
                     break;
             }
             break;
         case 0x1b:
             system("cls");
-            exit(0);
+            menu();
             break;
     }
 }
 
-void display_transition(int currentStateNum) {
-    char *normalState[4] = {"  入力\n", "  検索\n", "  メダル総獲得順一覧\n", "  国名順一覧\n"};
-    char *selectState[4];
+void sort_display(int currentStateNum) {
+    char *normalState[2] = {"  総メダル数ソート\n", "  メダル順位ソート\n"};
+    char *selectState[2];
     char allow[50] = "→";
     strcat(allow, normalState[currentStateNum]);
 
-    for(int i = 0; i < 4; i++) {
+    for(int i = 0; i < 2; i++) {
         selectState[i] = normalState[i];
         selectState[currentStateNum] = allow;
         printf("%s", selectState[i]);
